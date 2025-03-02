@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Signup - Drive to Destiny</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('images/back.jpg') no-repeat center center/cover;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 300px;
+        }
+
+        .input-group {
+            margin: 15px 0;
+            text-align: left;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            background: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #218838;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="login-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="login-username">Username</label>
+                <input type="text" id="login-username" required>
+            </div>
+            <div class="input-group">
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" required>
+            </div>
+            <button type="submit">Login</button>
+            <p><a href="#" id="forgot-password-link">Forgot Password?</a></p>
+            <p>Don't have an account? <a href="#" id="signup-link">Sign up</a></p>
+        </form>
+    </div>
+
+    <div class="container" id="signup-container" style="display: none;">
+        <h2>Sign Up</h2>
+        <form id="signupForm">
+            <div class="input-group">
+                <label for="signup-username">Username</label>
+                <input type="text" id="signup-username" required>
+            </div>
+            <div class="input-group">
+                <label for="signup-Email ">Email</label>
+                <input type="text" id="signup-Email" required>
+            </div>
+            <div class="input-group">
+                <label for="signup-password">Password</label>
+                <input type="password" id="signup-password" required>
+            </div>
+            <div class="input-group">
+                <label for="signup-confirm-password">Re-enter Password</label>
+                <input type="password" id="signup-confirm-password" required>
+            </div>
+            
+            <button type="submit">Sign Up</button>
+            <p>Already have an account? <a href="#" id="login-link">Login</a></p>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("signup-link").addEventListener("click", function () {
+            document.getElementById("login-container").style.display = "none";
+            document.getElementById("signup-container").style.display = "block";
+        });
+
+        document.getElementById("login-link").addEventListener("click", function () {
+            document.getElementById("signup-container").style.display = "none";
+            document.getElementById("login-container").style.display = "block";
+        });
+
+        document.getElementById("signupForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            let username = document.getElementById("signup-username").value;
+            let password = document.getElementById("signup-password").value;
+            let confirmPassword = document.getElementById("signup-confirm-password").value;
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+                return;
+            }
+
+            if (localStorage.getItem(username)) {
+                alert("Username already taken!");
+                return;
+            }
+
+            let user = { username: username, password: password };
+            localStorage.setItem(username, JSON.stringify(user));
+            alert("Account created successfully!");
+            document.getElementById("signup-container").style.display = "none";
+            document.getElementById("login-container").style.display = "block";
+        });
+
+        document.getElementById("loginForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            let username = document.getElementById("login-username").value;
+            let password = document.getElementById("login-password").value;
+            let storedUser = localStorage.getItem(username);
+
+            if (storedUser) {
+                let userData = JSON.parse(storedUser);
+                if (userData.password === password) {
+                    alert("Login successful!");
+                    window.location.href = "index.html";
+                } else {
+                    alert("Invalid credentials!");
+                }
+            } else {
+                alert("No account found with this username!");
+            }
+        });
+    </script>
+</body>
+</html>

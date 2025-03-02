@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Trip - Drive To Destiny</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('images/back.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px 20px;
+        }
+
+        .nav-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        .nav-menu ul li {
+            margin: 0 15px;
+        }
+
+        .nav-menu ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .booking {
+            text-align: center;
+            padding: 50px;
+            background: rgba(0, 0, 0, 0.6);
+            margin: 50px auto;
+            max-width: 500px;
+            border-radius: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 18px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+        }
+
+        /* Searchable Dropdown */
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+        }
+
+        .dropdown-list {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: white;
+            max-height: 150px;
+            overflow-y: auto;
+            border-radius: 5px;
+            display: none;
+            z-index: 1000;
+        }
+
+        .dropdown-list div {
+            padding: 10px;
+            cursor: pointer;
+            color: black;
+        }
+
+        .dropdown-list div:hover {
+            background: #ff9800;
+            color: white;
+        }
+
+        button {
+            background: #ff9800;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background: #e68900;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Success Popup */
+        .success-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+            font-size: 20px;
+            z-index: 1000;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .success-popup img {
+            width: 80px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -55%);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html"><img src="images/logo.jpg" alt="logo" style="width: 200px; height: auto;"></a>
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#destinations">Destinations</a></li>
+                <li><a href="index.html#hotels">Hotels</a></li>
+                <li><a href="index.html#activities">Activities</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="booking">
+            <h1>Book Your Trip</h1>
+            <p>Fill out the form below to book your dream vacation with us!</p>
+            <form id="booking-form">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="Enter your email">
+                </div>
+
+                <div class="form-group">
+                    <label for="destination-search">Choose Destination</label>
+                    <div class="search-box">
+                        <input type="text" id="destination-search" placeholder="Search destination...">
+                        <div class="dropdown-list" id="destination-list"></div>
+                    </div>
+                    <input type="hidden" id="destination" name="destination">
+                </div>
+
+                <div class="form-group">
+                    <label for="date">Travel Date</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Additional Requests</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Special requests or notes"></textarea>
+                </div>
+                <button type="submit">Confirm Booking</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Drive To Destiny. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Success Popup -->
+    <div class="success-popup" id="success-popup">
+        <img src="https://th.bing.com/th/id/OIP.cLzMPCEsOWWrKKXYrt80-AHaHa?w=181&h=181&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="Success">
+        <p>Booking Confirmed Successfully!</p>
+    </div>
+
+    <audio id="success-sound" src="sucess.mp3"></audio>
+
+    <script>
+        document.getElementById("booking-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            document.getElementById("success-popup").style.display = "block";
+            document.getElementById("success-sound").play();
+
+            setTimeout(() => {
+                document.getElementById("success-popup").style.display = "none";
+                window.location.href = "booking-success.html";
+            }, 3000);
+        });
+    </script>
+</body>
+</html>

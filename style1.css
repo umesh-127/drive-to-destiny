@@ -1,0 +1,105 @@
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999; /* Ensure modal is on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(33, 37, 41, 0.8), rgba(0, 0, 0, 0.8)); /* Gradient background */
+    opacity: 0;
+    transition: opacity 0.4s ease; /* Fade-in effect */
+}
+
+/* When modal is active */
+.modal.open {
+    display: block;
+    opacity: 1;
+}
+
+/* Modal Content Styling */
+.modal-content {
+    background-color: #f5f5f5;
+    margin: 15% auto;
+    padding: 40px;
+    border-radius: 15px;
+    width: 85%;
+    max-width: 600px;
+    transform: translateY(-50px);
+    animation: slideIn 0.4s forwards;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    font-family: 'Helvetica Neue', sans-serif;
+}
+
+/* Slide-in effect */
+@keyframes slideIn {
+    0% {
+        transform: translateY(-50px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Close Button Styling */
+.close {
+    color: #fff;
+    font-size: 36px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    background-color: #e74c3c;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    background-color: #c0392b;
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+/* Title Styling */
+.modal-content h2 {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Body Text Styling */
+.modal-content p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #555;
+    text-align: center;
+}
+
+/* Button Styling (Optional) */
+.modal-content button {
+    background-color: #3498db;
+    color: #fff;
+    font-size: 18px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.modal-content button:hover {
+    background-color: #2980b9;
+}
+
+/* Body scroll lock when modal is open */
+body.modal-open {
+    overflow: hidden;
+}

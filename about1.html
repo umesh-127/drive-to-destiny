@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prakasam Barrage - Drive To Destiny</title>
+    <style>
+        /* Style for modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 20px;
+            width: 50%;
+            text-align: center;
+            border-radius: 10px;
+            position: relative;
+        }
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <section id="prakasam-barrage">
+        <h2>Prakasam Barrage</h2>
+        <div>
+            <img src="https://imgs.search.brave.com/0LqbIl5miqwjET8ip8Se8gOx3u6dAc6FtY_vU0OLxi4/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy80/LzRmL05pZ2h0X3Zp/ZXdfb2ZfUHJha2Fz/YW1fQmFycmFnZS5q/cGc" 
+                 alt="Prakasam Barrage" onclick="openModal()"
+                 style="width: 100%; max-width: 600px; cursor: pointer;">
+            <p> A majestic dam across the Krishna River, offering stunning views and an architectural marvel.</p>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="prakasam-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2>Prakasam Barrage</h2>
+            <img src="https://imgs.search.brave.com/0LqbIl5miqwjET8ip8Se8gOx3u6dAc6FtY_vU0OLxi4/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy80/LzRmL05pZ2h0X3Zp/ZXdfb2ZfUHJha2Fz/YW1fQmFycmFnZS5q/cGc"
+                 alt="Prakasam Barrage" style="width:100%;">
+            <p>Prakasam Barrage is an architectural marvel that facilitates irrigation and enhances the scenic beauty of Vijayawada.</p>
+            <p><strong>Entry Fee:</strong> Free</p>
+            <p><strong>Best Time to Visit:</strong> October to March</p>
+        </div>
+    </div>
+
+    <script>
+        // Function to open modal
+        function openModal() {
+            document.getElementById("prakasam-modal").style.display = "block";
+        }
+
+        // Function to close modal
+        function closeModal() {
+            document.getElementById("prakasam-modal").style.display = "none";
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            let modal = document.getElementById("prakasam-modal");
+            if (event.target === modal) {
+                closeModal();
+            }
+        };
+    </script>
+
+</body>
+</html>
