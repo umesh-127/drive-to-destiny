@@ -7,7 +7,9 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: url('images/back.jpg') no-repeat center center/cover;
+            background: url('images/back.jpg') no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed;
             text-align: center;
             display: flex;
             justify-content: center;
@@ -17,11 +19,12 @@
         }
 
         .container {
+            width: 90%; /* Makes it responsive */
+            max-width: 350px; /* Prevents it from getting too big */
             background: white;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            width: 300px;
         }
 
         .input-group {
@@ -31,8 +34,8 @@
 
         input {
             width: 100%;
-            padding: 8px;
-            margin-top: 5px;
+            padding: 12px; /* Improves touch usability */
+            font-size: 16px; /* Better readability */
             border: 1px solid #ddd;
             border-radius: 5px;
         }
@@ -40,11 +43,13 @@
         button {
             background: #28a745;
             color: white;
-            padding: 10px;
+            padding: 12px; /* Increases tap area */
+            font-size: 16px;
             border: none;
             cursor: pointer;
             width: 100%;
             margin-top: 10px;
+            border-radius: 8px; /* Smooth design */
         }
 
         button:hover {
@@ -59,8 +64,21 @@
         a:hover {
             text-decoration: underline;
         }
+
+        /* Mobile responsiveness */
+        @media (max-width: 480px) {
+            .container {
+                width: 95%;
+                padding: 15px;
+            }
+
+            input, button {
+                font-size: 14px; /* Adjusts text size on small screens */
+            }
+        }
     </style>
 </head>
+
 <body>
     <div class="container" id="login-container">
         <h2>Login</h2>
